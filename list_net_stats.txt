@@ -9,4 +9,16 @@ Daily social media usage
 Hours streamed on Netflix, Hulu, etc
 Google searches conducted		
 People shopping online	
-Minutes of webinars on Zoom		
+Minutes of webinars on Zoom	
+
+HTML Pages:
+(background) background.HTML
+(popup) index.HTML
+(options) options.HTML
+
+possible permissions:
+IP API
+chrome- NetworkInformation interface api
+    -The NetworkInformation interface provides information about the connection a device is using to communicate with the network and provides a means for scripts to be notified if the connection type changes. The NetworkInformation interfaces cannot be instantiated. It is instead accessed through the connection property of the Navigator interface.
+
+
