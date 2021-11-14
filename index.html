@@ -11,19 +11,31 @@
       min-width: 10em;
       background: salmon;
     }
+
+    #shown-display {
+        display: none;
+    }
+
+    #refreshed-display {
+        display: none;
+    }
+
   </style>
-  <script defer src="background.js"></script>
+ 
 </head>
 <body>
     <section>
         <h2>Time Elapsed</h2>
         <div class="display-buttons">
-            <button id="clear-display">Get Time Elapsed</button>
+            <button id="time-display">Get Time Elapsed</button>
+            <div id="shown-display">Time Elapsed: </div>
             <button id="refresh-display">Refresh time</button>
+            <div id="refreshed-display">Current Time: </div>
           </div>
         </h2>
     </section>
 
-    <!-- section to show clock time  -->
+<script src="background.js"></script>
+
 </body>
 </html>

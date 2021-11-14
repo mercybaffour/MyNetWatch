@@ -1,6 +1,9 @@
-// This  is fired when the user's profile with this extension installed first starts up \.
+function openPage() {
+    chrome.tabs.create({ url: 'index.html' });
+}
 
-chrome.runtime.onStartup.addListener( () => {
+chrome.action.onClicked.addListener(openPage);
+
 var TimeWatch = function () {
     
     var startTime = new Date().getTime();
@@ -8,35 +11,59 @@ var TimeWatch = function () {
     var now = startTime;
     
     this.start = function () {
-        startTime = new Date().getTime();
+       return  startTime = new Date().getTime();
     };
     
-    this.check = function (message) {
+    this.check = function () {
         now = (new Date().getTime());
-        console.log(message, 'START:', now - startTime, 'LAST:', now - last);
+        console.log( 'START:', now - startTime, 'LAST:', now - last);
+        var display = `'START:', ${now - startTime}, 'LAST:', ${now - last})`
         last = now;
+
+        return display;
     };
-}});
+}
 
-chrome.runtime.onStartup.addListener( () => {
-    //Example: Will keep checking, updating "last" to previous now date.gettime() value
+function showElapsedTime() {
     var time = new TimeWatch ();
-    //begin tracking time
-    time.start();
-    //...do stuff
-    time.check('say something here')//look at your console for output
-    //..do more stuff
-    time.check('say something else')//look at your console for output
-    //..do more stuff
-    time.check('say something else one more time')//look at your console for output
-});
-  
-chrome.action.onClicked.addListener(openPage);
+    var timeButton = document.getElementById("time-display");  
 
-function openPage() {
-  chrome.tabs.create({ url: 'index.html' });
+    timeButton.addEventListener("click", () => {
+        
+    var timeDisplay = document.getElementById("shown-display")
+
+    if (timeDisplay.style.display === "none") {
+        timeDisplay.style.display = "block";
+        timeDisplay.innerText = "test";
+        } else {
+        timeDisplay.style.display = "none";
+        }
+    })
+}
+function showCurrentTime() {
+    var currentTime = new TimeWatch ();
+    var refreshButton = document.getElementById("refresh-display");  
+
+    refreshButton.addEventListener("click", () => {
+        
+    var refreshedDisplay = document.getElementById("refreshed-display")
+
+    if (refreshedDisplay.style.display === "none") {
+        refreshedDisplay.style.display = "block";
+        refreshedDisplay.innerText = "test";
+        } else {
+        refreshedDisplay.style.display = "none";
+        }
+    })
 }
   
- 
-    
- 
+chrome.action.onClicked.addListener((tab) => {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: [showElapsedTime, showCurrentTime]
+    });
+});
+
+
+
+
