@@ -1,3 +1,7 @@
+Starting feeature:
+Time spent online
+
+
 Upload Speed
 Download speed 
 Latency
